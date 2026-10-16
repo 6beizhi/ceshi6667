@@ -1,0 +1,17 @@
+services:
+  petsafe:
+    build: .
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:8000:8000"
+    environment:
+      HOST: "0.0.0.0"
+      PORT: "8000"
+      PETSAFE_DATA_DIR: /data
+      COOKIE_SECURE: "1"
+      ADMIN_EMAIL: ${ADMIN_EMAIL}
+      ADMIN_PASSWORD: ${ADMIN_PASSWORD}
+    volumes:
+      - petsafe_data:/data
+volumes:
+  petsafe_data:
